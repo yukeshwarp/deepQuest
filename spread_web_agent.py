@@ -13,7 +13,6 @@ from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
 from crawl4ai.deep_crawling import BFSDeepCrawlStrategy
 from crawl4ai.content_scraping_strategy import LXMLWebScrapingStrategy
 import time
-from mcp.server.fastmcp import FastMCP
 
 # Setup logging
 logging.basicConfig(
@@ -31,9 +30,6 @@ NEWSAPI_KEY = os.getenv("NEWSAPI_KEY")
 HEADERS = {
     "User-Agent": "MyApp/1.0 (contact@example.com)"  # Customize this with your contact
 }
-
-# Create the MCP server instance
-mcp = FastMCP("DeepQuest Web Agent")
 
 # --- Retry Decorator ---
 def retry_on_exception(max_retries=2, backoff=2):
@@ -315,6 +311,7 @@ def deep_crawl_google_results(urls, max_depth=2, max_results=3):
             scraping_strategy=LXMLWebScrapingStrategy(),
             verbose=True
         )
+        
         async with AsyncWebCrawler() as crawler:
             all_results = []
             for url in urls[:max_results]:
@@ -354,35 +351,46 @@ def search_google(query):
         logging.critical(f"Unexpected error occurred in search_google: {e}")
         return "An unexpected error occurred. Please try again later."
 
-@mcp.tool()
 def search_google_api(query):
     """Searches Google and returns relevant web results for a query."""
     formatted_results, google_urls = google_search(query)
     return "\n\n".join(formatted_results)
 
-@mcp.tool()
 def search_arxiv_api(query):
     """Searches ArXiv and returns relevant results for a query."""
     arxiv_results = arxiv_search(query)
     return "\n\n".join(arxiv_results)
 
-@mcp.tool()
 def search_newsapi_api(query):
     """Searches NewsAPI and returns relevant news articles for a query."""
     newsapi_results = newsapi_search(query)
     return "\n\n".join(newsapi_results)
 
-@mcp.tool()
 def search_sec_api(query):
     """Searches SEC and returns relevant filings for a query."""
     sec_results = sec_search(query)
     return "\n\n".join(sec_results)
 
-@mcp.tool()
 def search_wikipedia_api(query):
     """Searches Wikipedia and returns relevant extracts for a query."""
     wiki_results = wikipedia_extract(query)
     return "\n\n".join(wiki_results)
 
-if __name__ == "__main__":
-    mcp.run()
+# MCP communication layer for sources
+
+def mcp_query_source(source, query):
+    """Communicate with a source (e.g., Google, Arxiv, NewsAPI, SEC, Wikipedia) through MCP."""
+    # This is a placeholder for actual MCP integration
+    # In a real implementation, you would use the MCP protocol to route the query to the correct source
+    if source == "google":
+        return search_google_api(query)
+    elif source == "arxiv":
+        return search_arxiv_api(query)
+    elif source == "newsapi":
+        return search_newsapi_api(query)
+    elif source == "sec":
+        return search_sec_api(query)
+    elif source == "wikipedia":
+        return search_wikipedia_api(query)
+    else:
+        return f"[MCP] Source '{source}' not supported."
