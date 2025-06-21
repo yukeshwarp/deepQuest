@@ -105,9 +105,10 @@ if query and (not st.session_state.steps_initialized or st.session_state.query !
     st.session_state.proceed = False
     st.session_state.steps_initialized = True
     st.session_state.query = query
+    # st.write(f"Query: {query}")
 
 if st.session_state.query and st.session_state.steps:
-    
+    st.write(f"Query: {st.session_state.query}")
     # Always use session state for steps
     if not st.session_state.proceed:
         steps = st.session_state.steps
@@ -218,6 +219,7 @@ if st.session_state.query and st.session_state.steps:
 
 # --- Always display report and download button if available ---
 if st.session_state.report:
+    # st.write(f"Query: {query}")
     st.subheader("Final Research Report")
     st.markdown(st.session_state.report)
     word_buffer = generate_word_doc_from_markdown(st.session_state.report)

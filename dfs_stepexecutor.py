@@ -5,7 +5,6 @@ from config import client
 
 load_dotenv()
 
-
 def execute_step(step, context):
     """Execute a single research step using function calling and web search."""
     exec_prompt = (

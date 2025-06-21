@@ -107,7 +107,7 @@ if query and (not st.session_state.steps_initialized or st.session_state.query !
     st.session_state.query = query
 
 if st.session_state.query and st.session_state.steps:
-    
+    st.write(f"Query: {st.session_state.query}")
     # Always use session state for steps
     if not st.session_state.proceed:
         steps = st.session_state.steps
