@@ -91,8 +91,16 @@ if "steps_initialized" not in st.session_state:
     st.session_state.steps_initialized = False
 
 query = st.chat_input("Enter your research query:")
-if query:
+if query and (st.session_state.query != query):
+    # Clear all relevant session state for a new query
+    st.session_state.steps = []
+    st.session_state.completed_steps = []
+    st.session_state.context = ""
+    st.session_state.report = None
+    st.session_state.proceed = False
+    st.session_state.steps_initialized = False
     st.session_state.query = query
+
 # Set your max_steps dynamically or statically as needed
 max_steps = 20  # Or use a value from Q-learning or user input
 
