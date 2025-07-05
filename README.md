@@ -1,7 +1,5 @@
 # deepQuest Application Documentation
 
-> **Note:** This documentation is based on a code search of the repository. Some results may be incomplete. For further details, review the repository directly on [GitHub](https://github.com/yukeshwarp/deepQuest).
-
 ## Overview
 
 **deepQuest** is an AI-powered research automation platform featuring two distinct application flows: `dfsapp` (Depth-First Search Application) and `bfsapp` (Breadth-First Search Application). Both are built using Streamlit for interactive web interfaces and leverage LLMs (primarily GPT-4.1) and multiple web search APIs to automate, execute, and report on research tasks.
