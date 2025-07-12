@@ -17,6 +17,18 @@ logging.basicConfig(
     format="%(asctime)s [%(levelname)s] %(message)s"
 )
 
+st.set_page_config(
+    page_title="Depth-First Deep Research App",
+    page_icon="🧠",
+    layout="wide",
+    initial_sidebar_state="expanded",
+    menu_items={
+        'Get Help': '',
+        'Report a bug': "",
+        'About': "This is a research app that uses depth-first search to plan and execute research steps. It generates a report based on the results of the steps taken."
+    }
+)
+
 st.title("deepQuest v2")
 st.sidebar.title("Research Steps")
 
