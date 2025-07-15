@@ -7,7 +7,8 @@
 ## Application Architecture & Workflow
 
 Below is a detailed architecture diagram describing the application workflow:
-<img width="1302" height="778" alt="diagram-export-15-7-2025-12_33_32-pm" src="https://github.com/user-attachments/assets/04ed382a-00c9-4b75-a723-a1120f33a5d9" />
+<img width="1302" height="778" alt="diagram-export-15-7-2025-12_37_21-pm" src="https://github.com/user-attachments/assets/486e7b70-5921-4ee5-83fe-bccd1e7aa5fe" />
+
 
 ---
 
