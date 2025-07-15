@@ -3,6 +3,10 @@
 ## Overview
 
 **deepQuest** is an AI-powered research automation platform featuring two distinct application flows: `dfsapp` (Depth-First Search Application) and `bfsapp` (Breadth-First Search Application). Both allow users to automate and orchestrate large-scale research tasks using LLMs, web search agents, and custom report generation.
+
+## Application Architecture & Workflow
+
+Below is a detailed architecture diagram describing the application workflow:
 <img width="1302" height="778" alt="diagram-export-15-7-2025-12_33_32-pm" src="https://github.com/user-attachments/assets/04ed382a-00c9-4b75-a723-a1120f33a5d9" />
 
 ---
@@ -11,7 +15,6 @@
 
 - [Installation](#installation)
 - [Application Structure](#application-structure)
-- [Application Architecture & Workflow](#application-architecture--workflow)
 - [Core Pipeline](#core-pipeline)
   - [1. Initialization](#1-initialization)
   - [2. Research Planning](#2-research-planning)
@@ -88,30 +91,8 @@
 
 ---
 
-## Application Architecture & Workflow
 
-Below is a detailed architecture diagram describing the application workflow:
 
-```mermaid
-flowchart TD
-    A[User Input Query via Streamlit UI] --> B{Application Mode}
-    B -- dfsapp.py --> C[DFS Step Executor]
-    B -- bfsapp.py --> D[BFS Step Executor]
-    C & D --> E[Load Environment & Session State]
-    E --> F[Research Planning<br/>(planner.py: plan_research())]
-    F --> G[Display/Allow Edit of Research Steps]
-    G --> H[Batch Step Execution (3 at a time)]
-    H --> I[Web Agents:<br/>Google, ArXiv, NewsAPI, SEC, Wikipedia]
-    I --> J[Collate Results and Update Context]
-    J --> K{All Steps Completed?}
-    K -- No --> L[Replanning Logic<br/>(planner.py: replanner())]
-    L --> G
-    K -- Yes --> M[Report Generation<br/>(writer.py: report_writer())]
-    M --> N[Optional Report Evaluation<br/>(writer.py: eval_agent())]
-    N --> O[Render Report in UI<br/>+ Download as .docx]
-    style A fill:#f9f,stroke:#333,stroke-width:1px
-    style O fill:#bbf,stroke:#333,stroke-width:1px
-```
 
 **Components Explained:**
 - **Streamlit UI:** Entry point for user queries, parameter input, and session management.
