@@ -23,8 +23,8 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded",
     menu_items={
-        'Get Help': '',
-        'Report a bug': "",
+        "Get Help": "https://example.com/help",
+        "Report a Bug": "https://example.com/bug",
         'About': "This is a research app that uses breadth-first search to plan and execute research steps. It generates a report based on the results of the steps taken."
     }
 )
